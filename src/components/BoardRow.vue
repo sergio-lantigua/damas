@@ -5,7 +5,8 @@
             :key="index"
             :row="rowNum"
             :col="index"
-            :ficha="casilla =! null ? fichas[casilla] : null">
+            :ficha="casilla != null ? fichas.filter(val => val.index == casilla)[0] : null"
+            @posibleMove="movimientoDisponible">
             </BoardSquare>
 
         </template>      
@@ -20,6 +21,11 @@ export default {
   name: 'BoardRow',
   components: { BoardSquare },
   props: ['row', 'rowNum', 'fichas'],
+  methods: {
+      movimientoDisponible(data){
+          this.$emit('posibleMove', data)
+      }
+  }
 }
 </script>
 

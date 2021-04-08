@@ -1,6 +1,6 @@
 <template>
-    <div  @click="clickSquare" :class="colorCuadro">
-        <BoardChips :value="ficha"></BoardChips>
+    <div  :class="colorCuadro">
+        <BoardChips @posibleMove="movimientoDisponible" :value="ficha"></BoardChips>
     </div>
 </template>
 
@@ -14,13 +14,16 @@ export default {
   computed: {
     colorCuadro() {
         let color = (this.row + this.col) % 2 === 0 ? "light-brown" : "dark-brown",
-        classes = "square " + color;
+        classes = "cuadro " + color;
         return classes;
     }
 },
 methods: {
     clickSquare() {
-        console.log(this.ficha)
+        console.log(this.row)
+    },
+    movimientoDisponible(data){
+        this.$emit('posibleMove', data)
     }
 }
 }
@@ -28,7 +31,7 @@ methods: {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .square {
+    .cuadro {
         cursor: pointer;
         flex-grow: 1;
         flex-basis: 0;

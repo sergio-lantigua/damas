@@ -11,7 +11,7 @@ export default {
         let estilos = "";
         
         if (this.value) {
-            if (this.value.player === 1){
+            if (this.value.jugador === 1){
                 estilos += "player-red";
             }else if (this.value.isKing) {
                 estilos += " is a king";
@@ -25,7 +25,7 @@ export default {
 },
 methods: {
     clickFicha() {
-        console.log(this.value);
+        this.$emit("posibleMove", this.value.index)
     }
 }
 }
