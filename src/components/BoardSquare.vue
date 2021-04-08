@@ -1,27 +1,28 @@
 <template>
-    <div :class="colorCuadro"></div>
+    <div  @click="clickSquare" :class="colorCuadro">
+        <BoardChips :value="ficha"></BoardChips>
+    </div>
 </template>
 
 <script>
+import BoardChips from "./BoardChips.vue";
+
 export default {
   name: 'BoardSquare',
-  props: ['row', 'col'],
-  methods: {
-        getColor() {
-        if ((Number(this.row) + Number(this.col)) % 2 == 0) {
-            return 'white';
-        } else {
-            return 'black';
-        }
-        }
-    },
-   computed: {
-        colorCuadro() {
-            let color = (this.row + this.col) % 2 === 0 ? "red" : "white",
-            classes = "square " + color;
-            return classes;
-        }
+  components: { BoardChips },
+  props: ['row', 'col', 'ficha'],
+  computed: {
+    colorCuadro() {
+        let color = (this.row + this.col) % 2 === 0 ? "light-brown" : "dark-brown",
+        classes = "square " + color;
+        return classes;
     }
+},
+methods: {
+    clickSquare() {
+        console.log(this.ficha)
+    }
+}
 }
 </script>
 
@@ -35,14 +36,13 @@ export default {
         justify-content: center;
         -ms-flex-align: center;
         align-items: center;
-        border: 2px solid gray;
     }
 
-    .red {
-    background-color: black;
+    .dark-brown {
+    background-color: rgb(179 124 62 / 96%);;
     }
 
-    .black {
-        background-color: white;
+    .light-brown {
+        background-color: rgb(255 222 176);
     }
 </style>

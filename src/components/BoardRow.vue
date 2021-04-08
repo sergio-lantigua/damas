@@ -1,11 +1,11 @@
 <template>
     <div class="row"> 
-        <template v-for="(fila, index) in row">
+        <template v-for="(casilla, index) in row">
             <BoardSquare 
             :key="index"
             :row="rowNum"
-            :col="index">
-
+            :col="index"
+            :ficha="casilla =! null ? fichas[casilla] : null">
             </BoardSquare>
 
         </template>      
@@ -17,9 +17,9 @@
 import BoardSquare from "./BoardSquare.vue";
 
 export default {
-  name: 'CheckerBoard',
+  name: 'BoardRow',
   components: { BoardSquare },
-  props: ['row', 'rowNum'],
+  props: ['row', 'rowNum', 'fichas'],
 }
 </script>
 
@@ -27,9 +27,6 @@ export default {
 <style scoped>
 .row {
     height: 65px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
 }
